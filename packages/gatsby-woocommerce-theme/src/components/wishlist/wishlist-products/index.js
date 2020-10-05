@@ -55,7 +55,7 @@ const WishlistProducts = ({ setWishList }) => {
 						{!loading && !isEmpty( products ) && products.length && products.map((product) => {
 							return (
 								<WishlistProduct
-									key={product.node.id}
+									key={product.variationId}
 									product={product.node}
 									getWishList={ getWishList }
 									setWishList={ setWishList }

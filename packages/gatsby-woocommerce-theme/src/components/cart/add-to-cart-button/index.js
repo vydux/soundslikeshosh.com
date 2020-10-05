@@ -11,15 +11,20 @@ import "./style.scss";
 const AddToCart = (props) => {
   const { product } = props;
 
+  const [variation, setVariation] = useState(product.productId);
+
+
   const productQtyInput = {
     clientMutationId: v4(), // Generate a unique id.
     productId: product.productId,
+    variationId: variation
   };
 
   /* eslint-disable */
   const [cart, setCart] = useContext(AppContext);
   const [showViewCart, setShowViewCart] = useState(false);
   const [requestError, setRequestError] = useState(null);
+  
 
   // Get Cart Data.
   const { data, refetch } = useQuery(GET_CART, {
@@ -69,6 +74,11 @@ const AddToCart = (props) => {
     addToCart();
   };
 
+  const handleVariation = (event) => {
+    setVariation(event.target.value);
+    console.log(event.target.value);
+  }
+
   return (
     <div>
       {/*	Check if its an external product then put its external buy link */}
@@ -77,9 +87,17 @@ const AddToCart = (props) => {
           <button className="btn btn-outline-dark">Buy Now</button>
         </a>
       ) : (
-        <button onClick={handleAddToCartClick} className="btn btn-outline-dark">
-          Add to cart
-        </button>
+        <>
+          <select name="scent" onChange={handleVariation} className="custom-select dropdown-dark">								
+            {product.variations.nodes.map( variation => {
+              const scents = variation.attributes.nodes.filter( attr => attr.name == "scent" );
+              return <option key={v4()} value={ variation.variationId }>{ scents[0].value }</option>
+            })}
+          </select>
+          <button onClick={handleAddToCartClick} className="btn btn-outline-dark">
+            Add to cart
+          </button>
+        </>
       )}
       {showViewCart ? (
         <Link to="/cart">

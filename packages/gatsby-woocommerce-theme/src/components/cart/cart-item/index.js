@@ -78,6 +78,7 @@ const CartItem = ( {
 			<div className="col-md-9 cart-right-col">
 				<div className="cart-product-title-wrap">
 					<h2 className="cart-product-title">{ item.name }</h2>
+					<span>{ item.variationName }</span>
 					<button className="cart-remove-item" onClick={ ( event ) => handleRemoveProductClick( event, item.cartKey, products ) }>x</button>
 				</div>
 

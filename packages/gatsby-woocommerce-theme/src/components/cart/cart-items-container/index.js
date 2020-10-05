@@ -24,6 +24,7 @@ const CartItemsContainer = () => {
       localStorage.setItem("woo-next-cart", JSON.stringify(updatedCart));
 
       // Update cart data in React Context.
+      console.log(data);
       setCart(updatedCart);
     },
   });
@@ -111,14 +112,17 @@ const CartItemsContainer = () => {
             <div className="woo-next-cart-table col-md-8 mb-md-0 mb-5">
 	            {cart.products.length &&
 	            cart.products.map((item) => (
+                <>
 		            <CartItem
-			            key={item.productId}
+			            key={item.variationId}
 			            item={item}
 			            updateCartProcessing={updateCartProcessing}
 			            products={cart.products}
 			            handleRemoveProductClick={handleRemoveProductClick}
 			            updateCart={updateCart}
 		            />
+                <div>{JSON.stringify(item)}</div>
+                </>
 	            ))}
 
               {/*Clear entire cart*/}

@@ -64,7 +64,7 @@ const Products = (props) => {
     <div className="container">
       <div className="product-container row">
         {currentProducts.map((product) => (
-          <Product key={product.id} product={product} />
+          <Product key={product.variationId} product={product} />
         ))}
       </div>
       <Pagination

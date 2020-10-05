@@ -33,6 +33,19 @@ fragment ProductsFragment on WpProduct {
           id
           name
           price
+          variations {
+            nodes {
+              id
+              variationId
+              attributes {
+                nodes {
+                  attributeId
+                  name
+                  value
+                }
+              }
+            }
+          }
         }
         ... on WpExternalProduct {
           id

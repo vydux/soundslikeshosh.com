@@ -280,6 +280,8 @@ export const getFormattedCart = (data) => {
     product.qty = givenProducts[i].quantity;
     product.price = total / product.qty;
     product.totalPrice = givenProducts[i].total;
+    product.variationId = givenProducts[i].variation.variationId;
+    product.variationName = givenProducts[i].variation.name;
 
     // Ensure we can add products without images to the cart
     !isEmpty(givenProduct.image)
